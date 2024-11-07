@@ -1,0 +1,235 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  /* General Styles for html, body, and .root */
+html, body, .root {
+    height: 100%;
+  }
+  
+  body {
+    line-height: 1.5; /* Sets line-height for body text to ensure proper spacing */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    font-family: 'Roboto', sans-serif; /* Sets default font family */
+  }
+  
+  body, .app {
+    background: white; /* Sets background color for body and app */
+  }
+  
+  /* Main Page - Styles for the main header section */
+  .list-books-title {
+    padding: 12px 0; /* Adds padding to the top and bottom of the title */
+    background: #3cb2f6; /* Sets background color of the title section */
+    text-align: center; /* Centers the title text */
+  }
+  
+  .list-books-title h1 {
+    font-weight: 400; /* Sets font weight to normal */
+    margin: 0; /* Removes default margin */
+    color: white; /* Sets text color to white */
+  }
+  
+  .list-books-title {
+    display: block; /* Sets the display property to block */
+    position: relative; /* Allows for absolute positioning of elements inside */
+  }
+  
+  .list-books-title span {
+    position: absolute; /* Absolutely positions the span element */
+    right: 22px; /* Positions the span 22px from the right */
+    top: 50%; /* Vertically centers the span */
+    transform: translateY(-50%); /* Adjusts for exact vertical centering */
+    background-color: #389cd6; /* Sets background color for the span */
+    padding: 12px 16px; /* Adds padding inside the span */
+    border-radius: 100%; /* Makes the span circular */
+    transition: all 0.3s; /* Adds a smooth transition effect for hover */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
+  
+  .list-books-title span:hover {
+    background-color: #0e608f; /* Changes background color on hover */
+  }
+  
+  .list-books-title span svg {
+    fill: white; /* Sets the fill color for the SVG to white */
+    margin-top: 5px; /* Adds top margin to adjust the position of the SVG */
+  }
+  
+  /* Main Content Styles */
+  .list-books-content {
+    padding: 0 0 85px; /* Adds padding to the bottom */
+    flex: 1; /* Makes sure the content takes all available space */
+  }
+  
+  .bookshelf {
+    padding: 0 12px 22px; /* Adds padding to bookshelf container */
+  }
+  
+  @media (min-width: 600px) {
+    .bookshelf {
+      padding: 0 22px 44px; /* Increases padding on larger screens */
+    }
+  }
+  
+  .bookshelf-title {
+    border-bottom: 1px solid #dedede; /* Adds a bottom border to the bookshelf title */
+  }
+  
+  .bookshelf-books {
+    text-align: center; /* Centers the books inside the bookshelf */
+  }
+  
+  .open-search {
+    position: fixed; /* Fixes the search button at the bottom right corner */
+    right: 28px; /* Positions the button 28px from the right */
+    bottom: 28px; /* Positions the button 28px from the bottom */
+  }
+  
+  .open-search a {
+    display: block; /* Makes the link a block-level element */
+    width: 52px; /* Sets the width of the button */
+    height: 52px; /* Sets the height of the button */
+    border-radius: 50%; /* Makes the button circular */
+    background: #1c93d8; /* Sets the background color */
+    background-image: url('./icons/add.svg'); /* Adds background image */
+    background-repeat: no-repeat; /* Prevents repeating the background image */
+    background-position: center; /* Centers the background image */
+    background-size: 30px; /* Scales the background image */
+    box-shadow: 0 4px 7px rgba(0,0,0,0.16), 0 4px 7px rgba(0,0,0,0.23); /* Adds shadow around the button */
+    font-size: 0; /* Removes font size, as the link contains only an image */
+    outline: 0; /* Removes the outline around the button */
+  }
+  
+  .open-search a:hover {
+    background-color: #0e608f; /* Changes background color on hover */
+  }
+  
+  /* Search Page Styles - Styles for the search bar and results */
+  .search-books-bar {
+    position: fixed; /* Fixes the search bar to the top of the page */
+    width: 100%; /* Makes the search bar take up the full width */
+    top: 0;
+    left: 0;
+    z-index: 5; /* Ensures it stays on top of other elements */
+    display: flex; /* Uses flexbox for layout */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.19), 0 0 8px rgba(0,0,0,0.23); /* Adds shadow to the search bar */
+  }
+  
+  .search-books-input-wrapper {
+    flex: 1; /* Makes the input wrapper take up remaining space */
+  }
+  
+  .search-books-bar input {
+    width: 100%; /* Makes the input take up the full width */
+    padding: 17px 11px; /* Adds padding inside the input field */
+    font-size: 1.3em; /* Increases font size */
+    border: none; /* Removes the border around the input */
+    outline: none; /* Removes the outline when the input is focused */
+  }
+  
+  .close-search {
+    display: block; /* Makes the close button a block-level element */
+    top: 20px; /* Positions the close button 20px from the top */
+    left: 18px; /* Positions the close button 18px from the left */
+    width: 52px; /* Sets width of the close button */
+    height: 54px; /* Sets height of the close button */
+    background-image: url('./icons/arrow-back.svg'); /* Adds background image for close icon */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents repeating the background image */
+    background-size: 30px; /* Adjusts size of the background image */
+    font-size: 0; /* Hides any text */
+    border: none; /* Removes border */
+    outline: none; /* Removes outline */
+  }
+  
+  .close-search:hover {
+    background-image: url('./icons/arrow-back-hover.svg'); /* Changes background on hover */
+  }
+  
+  button:active {
+    border: red; /* Adds a red border when the button is pressed */
+    outline: none; /* Removes the outline when button is pressed */
+  }
+  
+  .search-books-results {
+    padding: 85px 12px 22px; /* Adds padding around the results */
+  }
+  
+  /* Books Grid Styles */
+  .books-grid {
+    list-style-type: none; /* Removes default list styling */
+    padding: 0; /* Removes padding */
+    margin: 0; /* Removes margin */
+    display: flex; /* Uses flexbox layout for the grid */
+    justify-content: center; /* Centers the grid items */
+    flex-wrap: wrap; /* Allows grid items to wrap onto new lines */
+  }
+  
+  .books-grid li {
+    padding: 12px 16px; /* Adds padding to individual grid items */
+    text-align: left; /* Aligns text to the left */
+  }
+  
+  .book {
+    width: 145px; /* Sets width for each book item */
+  }
+  
+  .book-title,
+  .book-authors {
+    font-size: 0.85em; /* Decreases font size slightly */
+  }
+  
+  .book-title {
+    margin-top: 12px; /* Adds space above the book title */
+  }
+  
+  .book-authors {
+    color: #999; /* Sets the author name color to a lighter shade */
+  }
+  
+  .book-top {
+    position: relative; /* Allows for absolute positioning of elements inside */
+    height: 205px; /* Sets a fixed height for the book top */
+    display: flex; /* Uses flexbox to align elements */
+    align-items: flex-end; /* Aligns the items to the bottom */
+  }
+  
+  .book-shelf-changer {
+    position: absolute; /* Absolutely positions the shelf changer button */
+    right: 0; /* Aligns the button to the right */
+    bottom: -12px; /* Positions the button slightly below the book cover */
+    width: 42px; /* Sets width of the button */
+    height: 42px; /* Sets height of the button */
+    border-radius: 50%; /* Makes the button circular */
+    background: #1c93d8; /* Sets background color */
+    background-image: url('./icons/arrow-drop-down.svg'); /* Adds drop-down icon */
+    background-repeat: no-repeat; /* Prevents repeating the background image */
+    background-position: center; /* Centers the background image */
+    background-size: 22px; /* Adjusts the background image size */
+    box-shadow: 0 4px 7px rgba(0,0,0,0.16), 0 4px 7px rgba(0,0,0,0.23); /* Adds shadow */
+  }
+  
+  .book-shelf-changer select {
+    width: 100%; /* Makes the select field fill the entire button */
+    height: 100%; /* Makes the select field fill the entire button */
+    opacity: 0; /* Hides the select field */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
+  
+  /* Book Cover Styles */
+  .book-cover {
+    height: 174px; /* Sets fixed height for the book cover */
+    background-color: #e1e1e1; /* Sets background color for placeholder */
+    background-position: center center; /* Centers the cover image */
+    background-size: cover; /* Makes the cover image fill the area */
+  }
+  

@@ -1,42 +1,51 @@
-const api = "https://reactnd-books-api.udacity.com";
+// Base URL for the API
+const apiUrl = "https://reactnd-books-api.udacity.com";
 
-let token = localStorage.token;
+// Generate or retrieve the unique token for storing bookshelf data on the backend server
+let authToken = localStorage.token; // Retrieve token from localStorage
+if (!authToken) {
+  // If no token exists, generate a new random token and store it in localStorage
+  authToken = localStorage.token = Math.random().toString(36).substr(-8);
+}
 
-if (!token) token = localStorage.token = Math.random().toString(36).substr(-8);
-
-const headers = {
-  Accept: "application/json",
-  Authorization: token,
+// Headers for making requests, including Authorization token
+const requestHeaders = {
+  'Accept': 'application/json', // Accept JSON response
+  'Authorization': authToken,   // Send the generated or existing token for authentication
 };
 
-export const get = (bookId) =>
-  fetch(`${api}/books/${bookId}`, { headers })
-    .then((res) => res.json())
-    .then((data) => data.book);
+// Function to get a specific book by its ID from the API
+export const getBook = (bookId) =>
+  fetch(`${apiUrl}/books/${bookId}`, { headers: requestHeaders })
+    .then(response => response.json())  // Parse the JSON response
+    .then(data => data.book);           // Extract the 'book' object from the response
 
-export const getAll = () =>
-  fetch(`${api}/books`, { headers })
-    .then((res) => res.json())
-    .then((data) => data.books);
+// Function to get all books in the library from the API
+export const getAllBooks = () =>
+  fetch(`${apiUrl}/books`, { headers: requestHeaders })
+    .then(response => response.json())  // Parse the JSON response
+    .then(data => data.books);          // Extract the 'books' array from the response
 
-export const update = (book, shelf) =>
-  fetch(`${api}/books/${book.id}`, {
-    method: "PUT",
+// Function to update a book's shelf on the backend
+export const updateBookShelf = (book, shelf) =>
+  fetch(`${apiUrl}/books/${book.id}`, {
+    method: 'PUT',                     // HTTP method to update the resource
     headers: {
-      ...headers,
-      "Content-Type": "application/json",
+      ...requestHeaders,               // Include default headers with the authorization token
+      'Content-Type': 'application/json', // Specify the content type as JSON
     },
-    body: JSON.stringify({ shelf }),
-  }).then((res) => res.json());
+    body: JSON.stringify({ shelf }),    // Send the updated shelf in the request body
+  }).then(response => response.json()); // Parse and return the response JSON
 
-export const search = (query, maxResults) =>
-  fetch(`${api}/search`, {
-    method: "POST",
+// Function to search for books based on a query
+export const searchBooks = (query) =>
+  fetch(`${apiUrl}/search`, {
+    method: 'POST',                    // HTTP method for creating a search request
     headers: {
-      ...headers,
-      "Content-Type": "application/json",
+      ...requestHeaders,               // Include default headers with the authorization token
+      'Content-Type': 'application/json', // Specify the content type as JSON
     },
-    body: JSON.stringify({ query, maxResults }),
+    body: JSON.stringify({ query }),    // Send the query in the request body
   })
-    .then((res) => res.json())
-    .then((data) => data.books);
+    .then(response => response.json()) // Parse the JSON response
+    .then(data => data.books);          // Extract and return the 'books' array from the response
